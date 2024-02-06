@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "unit.h"
+#include "unitdatamanager.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -18,9 +20,17 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+
+
+    void on_Left_Name_comboBox_currentTextChanged(const QString &arg1);
+
+    void on_Right_Name_comboBox_currentTextChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
+
+private:
+    UnitDataManager UnitDataManager;
+    QVector<Unit> Units;
 };
 #endif // MAINWINDOW_H

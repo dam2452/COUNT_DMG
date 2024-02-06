@@ -1,0 +1,705 @@
+[
+	{
+		"Name": "VaregvodaGuard",
+		"UnitName": "Varegvoda Guard",
+		"HP": 50,
+		"Armor": 5,
+		"Shield": 1,
+		"Speed": 4,
+		"Stamina": 1,
+		"Cost": 850,
+		"Wargear Options": [
+			{
+				"Name": "Bardiche",
+				"Skills": [
+					{
+						"SkillName": "Melee Damage",
+						"SkillValue": 15
+					},
+					{
+						"SkillName": "Armor Piercing",
+						"SkillValue": 3
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 50
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 1
+					},
+					{
+						"SkillName": "Charge",
+						"SkillValue": 2
+					},
+					{
+						"SkillName": "Charge Absorption",
+						"SkillValue": 6
+					},
+					{
+						"SkillName": "Anti Infantry",
+						"SkillValue": 3
+					}
+				]
+			}
+		],
+		"Abilities": [],
+		"Keywords": [
+			"Republics of Nevegrodi",
+			"Infantry"
+		],
+		"Description": "LOCTABLE(\"/Game/AdvancedTurnBasedTileToolkit/Units/UnitData/ST_Descriptions.ST_Descriptions\", \"VaregvodaGuardDesc\")"
+	},
+	{
+		"Name": "WarConstruct",
+		"UnitName": "War Construct",
+		"HP": 60,
+		"Armor": 5,
+		"Shield": 2,
+		"Speed": 3,
+		"Stamina": 0,
+		"Cost": 800,
+		"Wargear Options": [
+			{
+				"Name": "Paws",
+				"Skills": [
+					{
+						"SkillName": "Melee Damage",
+						"SkillValue": 14
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 50
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 1
+					}
+				]
+			}
+		],
+		"Abilities": [],
+		"Keywords": [
+			"Republics of Nevegrodi",
+			"Construct",
+			"Monster"
+		],
+		"Description": "NSLOCTEXT(\"[5686449386F139DA2DE826DFE19A02A8]\", \"DC3AA9874AF81466B6D962BE310FEBD0\", \"The clattering and rumbling herald the arrival of the war constructs of Nevegrodi. Machines crafted from wood and metal serve as a testament to the Republic\\'s superiority, at least in the eyes of the Nevegrodi themselves. The production process is exceptionally intricate and highly perilous. Only these two factors prevent them from overwhelming their enemies with these formidable yet very slow constructs.\")"
+	},
+	{
+		"Name": "Katavrots",
+		"UnitName": "Katavrots",
+		"HP": 45,
+		"Armor": 6,
+		"Shield": 3,
+		"Speed": 6,
+		"Stamina": 3,
+		"Cost": 760,
+		"Wargear Options": [
+			{
+				"Name": "Saber",
+				"Skills": [
+					{
+						"SkillName": "Melee Damage",
+						"SkillValue": 18
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 40
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 1
+					},
+					{
+						"SkillName": "Charge",
+						"SkillValue": 4
+					},
+					{
+						"SkillName": "Anit Cavalary",
+						"SkillValue": 2
+					}
+				]
+			}
+		],
+		"Abilities": [],
+		"Keywords": [
+			"Republics of Nevegrodi",
+			"Cavalary",
+			"Horse"
+		],
+		"Description": "NSLOCTEXT(\"[5686449386F139DA2DE826DFE19A02A8]\", \"64BED07C4D12B9E88D72178656BF5224\", \"Katavrota serve as the retinue of wealthy princes and Kniaziaz. Due to the high cost of maintaining these units, only a few can afford to deploy them in battle. Anyone who decides to enlist their services will receive in return an iron fist capable of breaking any enemy formation. Katavrota inspire allies and instill fear in the hearts of adversaries.\")"
+	},
+	{
+		"Name": "Streltsy",
+		"UnitName": "Streltsy",
+		"HP": 35,
+		"Armor": 2,
+		"Shield": 0,
+		"Speed": 4,
+		"Stamina": 0,
+		"Cost": 300,
+		"Wargear Options": [
+			{
+				"Name": "Hunting Knife",
+				"Skills": [
+					{
+						"SkillName": "Melee Damage",
+						"SkillValue": 8
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 10
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 1
+					}
+				]
+			},
+			{
+				"Name": "Longbow",
+				"Skills": [
+					{
+						"SkillName": "Range Damage",
+						"SkillValue": 15
+					},
+					{
+						"SkillName": "Range",
+						"SkillValue": 5
+					},
+					{
+						"SkillName": "Ammunition",
+						"SkillValue": 999
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 40
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 1
+					}
+				]
+			},
+			{
+				"Name": "Semiautomatic Crossbow",
+				"Skills": [
+					{
+						"SkillName": "Range Damage",
+						"SkillValue": 11
+					},
+					{
+						"SkillName": "Range",
+						"SkillValue": 4
+					},
+					{
+						"SkillName": "Ammunition",
+						"SkillValue": 999
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 60
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 2
+					}
+				]
+			}
+		],
+		"Abilities": [],
+		"Keywords": [
+			"Republics of Nevegrodi",
+			"Infantry",
+			"Archer"
+		],
+		"Description": "NSLOCTEXT(\"[5686449386F139DA2DE826DFE19A02A8]\", \"25C9A4AF4EF995076B1CAFBC78E771CC\", \"The Nevegrodian army has adopted defensive solutions at both the tactical and strategic levels, making Streltsy units often an important part of any army. Recruited from hunters and townspeople, they spend years mastering ranged weapons. They serve as a valuable addition, capable of thinning out approaching enemies.\")"
+	},
+	{
+		"Name": "DruzhinaShieldbearers",
+		"UnitName": "Druzhina Shieldbearers",
+		"HP": 35,
+		"Armor": 4,
+		"Shield": 3,
+		"Speed": 5,
+		"Stamina": 0,
+		"Cost": 320,
+		"Wargear Options": [
+			{
+				"Name": "Spear",
+				"Skills": [
+					{
+						"SkillName": "Melee Damage",
+						"SkillValue": 14
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 30
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 1
+					}
+				]
+			}
+		],
+		"Abilities": [],
+		"Keywords": [
+			"Republics of Nevegrodi",
+			"Infantry"
+		],
+		"Description": "NSLOCTEXT(\"[5686449386F139DA2DE826DFE19A02A8]\", \"740DA86744BFDD55BEA8748D9A39DAB4\", \"Professional infantry recruited from peasants or townsfolk. Their main duty is to serve the urban councils or princes. They form the backbone of most Nevegrodian armies. Months or years spent in training and battles make them effective and disciplined units.\")"
+	},
+	{
+		"Name": "Scouts",
+		"UnitName": "Scouts",
+		"HP": 30,
+		"Armor": 2,
+		"Shield": 1,
+		"Speed": 6,
+		"Stamina": 2,
+		"Cost": 270,
+		"Wargear Options": [
+			{
+				"Name": "Spear",
+				"Skills": [
+					{
+						"SkillName": "Melee Damage",
+						"SkillValue": 12
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 30
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 1
+					},
+					{
+						"SkillName": "Charge",
+						"SkillValue": 3
+					}
+				]
+			}
+		],
+		"Abilities": [],
+		"Keywords": [
+			"Republics of Nevegrodi",
+			"Cavalary",
+			"Horse"
+		],
+		"Description": "NSLOCTEXT(\"[5686449386F139DA2DE826DFE19A02A8]\", \"3B926C2E44F4DBACADB2A687CE5B776F\", \"They serve as the eyes and ears of every Nevegrodian army. Due to their defensive nature, they must rely on swift and agile scouts who will provide the army with information about the enemy\\'s movements. In times of peace, they often serve as messengers and couriers.\")"
+	},
+	{
+		"Name": "Conscripts",
+		"UnitName": "Conscripts",
+		"HP": 25,
+		"Armor": 1,
+		"Shield": 0,
+		"Speed": 5,
+		"Stamina": 0,
+		"Cost": 260,
+		"Wargear Options": [
+			{
+				"Name": "Scythe",
+				"Skills": [
+					{
+						"SkillName": "Melee Damage",
+						"SkillValue": 12
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 20
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 1
+					},
+					{
+						"SkillName": "Anit Cavalary",
+						"SkillValue": 2
+					}
+				]
+			}
+		],
+		"Abilities": [],
+		"Keywords": [
+			"Republics of Nevegrodi",
+			"Infantry"
+		],
+		"Description": "NSLOCTEXT(\"[5686449386F139DA2DE826DFE19A02A8]\", \"5780ACA04E32FDDAA6B2B0BC45580B9B\", \"The life of a peasant is not among the easiest. For half a year, everyone works hard in the fields from dawn to dusk. When the months turn cold, they strive to survive at any cost. Occasionally, due to misfortune, they are called to arms. Ill-equipped, lacking experience and discipline, they become mere cannon fodder.\")"
+	},
+	{
+		"Name": "KingsKnightlyBrotherhood",
+		"UnitName": "King's Knightly Brotherhood",
+		"HP": 55,
+		"Armor": 5,
+		"Shield": 4,
+		"Speed": 6,
+		"Stamina": 4,
+		"Cost": 840,
+		"Wargear Options": [
+			{
+				"Name": "Warhammer",
+				"Skills": [
+					{
+						"SkillName": "Melee Damage",
+						"SkillValue": 18
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 60
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 1
+					},
+					{
+						"SkillName": "Charge",
+						"SkillValue": 3
+					},
+					{
+						"SkillName": "Anit Cavalary",
+						"SkillValue": 5
+					}
+				]
+			}
+		],
+		"Abilities": [],
+		"Keywords": [
+			"King's Men",
+			"Cavalary",
+			"Horse"
+		],
+		"Description": "NSLOCTEXT(\"[5686449386F139DA2DE826DFE19A02A8]\", \"90972C7346E20E077883E9AD17DC05B4\", \"A formation steeped in legends, arising during the reign of the First King. It comprises only the wealthiest Lords who can afford proper equipment and steeds. Plate armor grants them exceptional durability. Heavy horses and lances make their charges devastating. Woe betide anyone who stands against the King\\'s Knights.\")"
+	},
+	{
+		"Name": "Jagers",
+		"UnitName": "Jagers",
+		"HP": 35,
+		"Armor": 2,
+		"Shield": 1,
+		"Speed": 4,
+		"Stamina": 0,
+		"Cost": 700,
+		"Wargear Options": [
+			{
+				"Name": "Axe",
+				"Skills": [
+					{
+						"SkillName": "Melee Damage",
+						"SkillValue": 12
+					},
+					{
+						"SkillName": "Armor Piercing",
+						"SkillValue": 1
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 10
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 1
+					}
+				]
+			},
+			{
+				"Name": "Short Bow",
+				"Skills": [
+					{
+						"SkillName": "Range Damage",
+						"SkillValue": 20
+					},
+					{
+						"SkillName": "Range",
+						"SkillValue": 4
+					},
+					{
+						"SkillName": "Armor Piercing",
+						"SkillValue": 1
+					},
+					{
+						"SkillName": "Ammunition",
+						"SkillValue": 999
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 30
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 1
+					}
+				]
+			}
+		],
+		"Abilities": [],
+		"Keywords": [
+			"King's Men",
+			"Infantry",
+			"Archer"
+		],
+		"Description": "NSLOCTEXT(\"[5686449386F139DA2DE826DFE19A02A8]\", \"48321784411F7E7A759BE185219BF67E\", \"Jagers are an elite formation of hunters traversing the dangerous forests of Grimwald. They specialize in hunting beasts and specters inhabiting the ancient woodland. Their primary weapons are lethal bows, with which they can neutralize threats from a distance. If necessary, they will fiercely defend themselves in close combat.\")"
+	},
+	{
+		"Name": "Zweihander",
+		"UnitName": "Zweihander",
+		"HP": 45,
+		"Armor": 5,
+		"Shield": 1,
+		"Speed": 4,
+		"Stamina": 0,
+		"Cost": 660,
+		"Wargear Options": [
+			{
+				"Name": "Longsword",
+				"Skills": [
+					{
+						"SkillName": "Melee Damage",
+						"SkillValue": 14
+					},
+					{
+						"SkillName": "Armor Piercing",
+						"SkillValue": 2
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 40
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 1
+					},
+					{
+						"SkillName": "Charge Absorption",
+						"SkillValue": 5
+					},
+					{
+						"SkillName": "Anti Infantry",
+						"SkillValue": 4
+					}
+				]
+			}
+		],
+		"Abilities": [],
+		"Keywords": [
+			"King's Men",
+			"Infantry"
+		],
+		"Description": "NSLOCTEXT(\"[5686449386F139DA2DE826DFE19A02A8]\", \"EE671E1E4847DF74326EE3B1DD024DD8\", \"Zweihanders are elite warriors wielding massive two-handed swords. Renowned for their unwavering determination and incredible strength in combat, they are often deployed on the most perilous missions on the battlefield. They excel in engagements against enemy infantry.\")"
+	},
+	{
+		"Name": "Huzar",
+		"UnitName": "Huzar",
+		"HP": 40,
+		"Armor": 4,
+		"Shield": 3,
+		"Speed": 7,
+		"Stamina": 3,
+		"Cost": 400,
+		"Wargear Options": [
+			{
+				"Name": "Lance",
+				"Skills": [
+					{
+						"SkillName": "Melee Damage",
+						"SkillValue": 16
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 50
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 1
+					},
+					{
+						"SkillName": "Charge",
+						"SkillValue": 2
+					},
+					{
+						"SkillName": "Anit Cavalary",
+						"SkillValue": 3
+					}
+				]
+			}
+		],
+		"Abilities": [],
+		"Keywords": [
+			"King's Men",
+			"Cavalary",
+			"Horse"
+		],
+		"Description": "NSLOCTEXT(\"[5686449386F139DA2DE826DFE19A02A8]\", \"75946C884A392C090C17E7AF38EAB779\", \"The ranks of the hussars represent a true cross-section of King\\'s Men social strata. Among them, one can encounter former peasants who turned to the military as a way of life, townsfolk conscripted into the army, and relatively poor (for their status) Lords who cannot afford expensive plate armor. Hussars are held in high regard and receive fair wages, rightfully so, as they often constitute the main force on the battlefield.\")"
+	},
+	{
+		"Name": "Longbowman",
+		"UnitName": "Longbowman",
+		"HP": 30,
+		"Armor": 3,
+		"Shield": 0,
+		"Speed": 4,
+		"Stamina": 0,
+		"Cost": 300,
+		"Wargear Options": [
+			{
+				"Name": "Hunting Knife",
+				"Skills": [
+					{
+						"SkillName": "Melee Damage",
+						"SkillValue": 8
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 10
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 1
+					}
+				]
+			},
+			{
+				"Name": "Longbow",
+				"Skills": [
+					{
+						"SkillName": "Range Damage",
+						"SkillValue": 12
+					},
+					{
+						"SkillName": "Range",
+						"SkillValue": 5
+					},
+					{
+						"SkillName": "Ammunition",
+						"SkillValue": 999
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 40
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 1
+					}
+				]
+			}
+		],
+		"Abilities": [],
+		"Keywords": [
+			"King's Men",
+			"Infantry",
+			"Archer"
+		],
+		"Description": "NSLOCTEXT(\"[5686449386F139DA2DE826DFE19A02A8]\", \"EEF528E54D76FD772205538CABD42F14\", \"Recruited from promising Levies or local hunters. They employ longbows to weaken the enemy from a distance. Combat experience and years spent on hunts make them valuable units.\")"
+	},
+	{
+		"Name": "Kriegsvolk",
+		"UnitName": "Kriegsvolk",
+		"HP": 32,
+		"Armor": 2,
+		"Shield": 0,
+		"Speed": 5,
+		"Stamina": 1,
+		"Cost": 270,
+		"Wargear Options": [
+			{
+				"Name": "Fork",
+				"Skills": [
+					{
+						"SkillName": "Melee Damage",
+						"SkillValue": 13
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 30
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 1
+					},
+					{
+						"SkillName": "Charge",
+						"SkillValue": 2
+					},
+					{
+						"SkillName": "Anit Cavalary",
+						"SkillValue": 2
+					}
+				]
+			}
+		],
+		"Abilities": [],
+		"Keywords": [
+			"King's Men",
+			"Infantry"
+		],
+		"Description": "NSLOCTEXT(\"[5686449386F139DA2DE826DFE19A02A8]\", \"CFB8B3BF42806042E76B9DBD90A1C133\", \"Kriegsvolk refers to individuals of dubious reputation conscripted into military service. Lords only resort to their services as a last resort. In exchange for amnesty and a hefty sack of gold, they are willing to do anything.\")"
+	},
+	{
+		"Name": "Leavy",
+		"UnitName": "Leavy",
+		"HP": 30,
+		"Armor": 2,
+		"Shield": 2,
+		"Speed": 5,
+		"Stamina": 0,
+		"Cost": 240,
+		"Wargear Options": [
+			{
+				"Name": "Axe",
+				"Skills": [
+					{
+						"SkillName": "Melee Damage",
+						"SkillValue": 12
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 30
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 1
+					}
+				]
+			},
+			{
+				"Name": "Javelins",
+				"Skills": [
+					{
+						"SkillName": "Range Damage",
+						"SkillValue": 8
+					},
+					{
+						"SkillName": "Range",
+						"SkillValue": 2
+					},
+					{
+						"SkillName": "Armor Piercing",
+						"SkillValue": 2
+					},
+					{
+						"SkillName": "Ammunition",
+						"SkillValue": 2
+					},
+					{
+						"SkillName": "Cost",
+						"SkillValue": 10
+					},
+					{
+						"SkillName": "Attacks",
+						"SkillValue": 1
+					}
+				]
+			}
+		],
+		"Abilities": [],
+		"Keywords": [
+			"King's Men",
+			"Infantry"
+		],
+		"Description": "NSLOCTEXT(\"[5686449386F139DA2DE826DFE19A02A8]\", \"A2888CD04A158C90B1844BBF314DE546\", \"The Levies constitute the main law enforcement forces recruited from the common people. Towns and villages are obliged to equip them with light armor, javelins, axes, and shields. In times of war, they are conscripted into the military, where they serve as the primary and aggressive infantry.\")"
+	}
+]
