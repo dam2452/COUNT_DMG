@@ -17,34 +17,35 @@
 #define AR_LABEL "AR"
 #define AP_LABEL "AP"
 
-// enum class UnitType {
-//     Infantry,
-//     Cavalry,
-//     Archer,
-//     Monster,
-//     Construct,
-//     Undefined
-// };
+struct UnitAttributes {
+    double hp = 0.0;
+    double meleeDamage = 0.0;
+    double rangeDamage = 0.0;
+    double stamina = 0.0;
+    double chargeBonus = 0.0;
+    double shield = 0.0;
+    double armor = 0.0;
+    double armorPiercing = 0.0;
 
-// UnitType tagToUnitType(const QString& tag) {
-//     if (tag == "Anti Infantry") return UnitType::Infantry;
-//     if (tag == "Anti Cavalry") return UnitType::Cavalry;
-//     if (tag == "Anti Archer") return UnitType::Archer;
-//     if (tag == "Anti Monster") return UnitType::Monster;
-//     if (tag == "Anti Construct") return UnitType::Construct;
-//     return UnitType::Undefined;
-// }
+    // Konstruktor pozwalający na szybką inicjalizację
+    UnitAttributes(double hp, double meleeDamage, double rangeDamage, double stamina,
+                   double chargeBonus, double shield, double armor, double armorPiercing)
+        : hp(hp), meleeDamage(meleeDamage), rangeDamage(rangeDamage), stamina(stamina),
+        chargeBonus(chargeBonus), shield(shield), armor(armor), armorPiercing(armorPiercing) {}
+};
+
+UnitAttributes getUnitAttributes(const QString& unitName, const QVector<Unit>& units) {
+    for (const Unit& unitItem : units) {
+        if (unitItem.getUnitName() == unitName) {
+            return UnitAttributes(unitItem.getHp(), unitItem.getMeleeDamage(), unitItem.getRangeDamage(), unitItem.getStamina(),
+                                  unitItem.getCharge(), unitItem.getShield(), unitItem.getArmor(), unitItem.getArmorPiercing());
+        }
+    }
+    return UnitAttributes(0, 0, 0, 0, 0, 0, 0, 0); // Return empty attributes if unit not found
+}
 
 
-// bool doesCounter(const Unit& unit, const Unit& target) {
-//     UnitType targetType = target.getType(); // Zakładam, że masz metodę getType() zwracającą UnitType
-//     for (const QString& tag : unit.getKeywords()) {
-//         if (tagToUnitType(tag) == targetType) {
-//             return true; // Znaleziono tag kontrujący typ docelowej jednostki
-//         }
-//     }
-//     return false;
-// }
+
 
 bool doesCounter(const Unit& unit1, const Unit& unit2) {
     auto unit1AntiTags = unit1.getAntiTags();
@@ -98,23 +99,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Right_Armor_label->setText(AR_LABEL);
     ui->Right_ArmorPirecing_label->setText(AP_LABEL);
 
-
-    // Najpierw zbierz wszystkie unikalne tagi
-    QSet<QString> uniqueTags;
-
-    for(const Unit& unit : Units) {
-        QVector<QString> tags = unit.getTags(); // Zakładając, że getTags() zwraca QVector<QString>
-        for (const QString& tag : tags) {
-            uniqueTags.insert(tag);
-        }
-    }
-
-    for (const QString& tag : uniqueTags) {
-        ui->Left_Tag_comboBox->addItem(tag);
-        ui->Right_Tag_comboBox->addItem(tag);
-    }
-
-
 }
 
 MainWindow::~MainWindow()
@@ -154,7 +138,6 @@ void MainWindow::on_Right_Name_comboBox_currentTextChanged(const QString &arg1)
             ui->Right_Shield_doubleSpinBox->setValue(unit.getShield());
             ui->Right_Armor_doubleSpinBox->setValue(unit.getArmor());
             ui->Right_ArmorPirecing_doubleSpinBox->setValue(unit.getArmorPiercing());
-            ui->Result_label->setText(unit.getTags()[0]);
             break;
         }
     }
@@ -163,16 +146,54 @@ void MainWindow::on_Right_Name_comboBox_currentTextChanged(const QString &arg1)
 
 void MainWindow::on_Attack_pushButton_clicked()
 {
-    double result=0.0;
-    double MeeleDamage=0.0;
+    int counterValue = 0;
+    double result = 0.0;
 
-    //result =
+    // Pobierz nazwy jednostek z obu comboBoxów
+    QString leftUnitName = ui->Left_Name_comboBox->currentText();
+    QString rightUnitName = ui->Right_Name_comboBox->currentText();
+
+    // Znajdź jednostki na podstawie nazw
+    Unit leftUnit, rightUnit;
+    bool leftFound = false, rightFound = false;
+
+    for (const Unit& unit : Units) {
+        if (unit.getUnitName() == leftUnitName) {
+            leftUnit = unit;
+            leftFound = true;
+        }
+        if (unit.getUnitName() == rightUnitName) {
+            rightUnit = unit;
+            rightFound = true;
+        }
+        if (leftFound && rightFound) break; // Zakończ pętlę, jeśli znaleziono obie jednostki
+    }
+
+    // Sprawdź, czy jednostki zostały znalezione
+    if (!leftFound || !rightFound) {
+        qDebug() << "Nie można znaleźć jednej lub obu jednostek";
+        return;
+    }
+
+    // Użyj funkcji doesCounter() do sprawdzenia, czy lewa jednostka kontruje prawą
+    if (doesCounter(leftUnit, rightUnit)) {
+        qDebug() << leftUnitName << "kontruje" << rightUnitName;
+        counterValue = 1;
+    } else {
+        qDebug() << leftUnitName << "nie kontruje" << rightUnitName;
+        counterValue = 0;
+    }
+
+    // Pobierz atrybuty jednostek przy użyciu getUnitAttributes
+    UnitAttributes leftAttributes = getUnitAttributes(leftUnitName, Units);
+    UnitAttributes rightAttributes = getUnitAttributes(rightUnitName, Units);
 
 
+    result = leftAttributes.hp - rightAttributes.hp;
 
-
-   // ui->Result_label->setText("test");
+    ui->Result_label->setNum(result);
 }
+
 
 
 void MainWindow::on_AttackRange_pushButton_clicked()
