@@ -26,6 +26,10 @@ private slots:
 
     void on_Right_Name_comboBox_currentTextChanged(const QString &arg1);
 
+    void on_Attack_pushButton_clicked();
+
+    void on_AttackRange_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
