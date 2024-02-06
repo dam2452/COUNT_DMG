@@ -17,6 +17,46 @@
 #define AR_LABEL "AR"
 #define AP_LABEL "AP"
 
+// enum class UnitType {
+//     Infantry,
+//     Cavalry,
+//     Archer,
+//     Monster,
+//     Construct,
+//     Undefined
+// };
+
+// UnitType tagToUnitType(const QString& tag) {
+//     if (tag == "Anti Infantry") return UnitType::Infantry;
+//     if (tag == "Anti Cavalry") return UnitType::Cavalry;
+//     if (tag == "Anti Archer") return UnitType::Archer;
+//     if (tag == "Anti Monster") return UnitType::Monster;
+//     if (tag == "Anti Construct") return UnitType::Construct;
+//     return UnitType::Undefined;
+// }
+
+
+// bool doesCounter(const Unit& unit, const Unit& target) {
+//     UnitType targetType = target.getType(); // Zakładam, że masz metodę getType() zwracającą UnitType
+//     for (const QString& tag : unit.getKeywords()) {
+//         if (tagToUnitType(tag) == targetType) {
+//             return true; // Znaleziono tag kontrujący typ docelowej jednostki
+//         }
+//     }
+//     return false;
+// }
+
+bool doesCounter(const Unit& unit, const QString& targetType) {
+    for (const QString& keyword : unit.getTags()) {
+        // Jeśli keyword zawiera typ, który może kontrować (np. "Anti Infantry"),
+        // sprawdź, czy targetType pasuje do tego typu.
+        if (keyword.contains("Anti") && keyword.contains(targetType)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -49,6 +89,23 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Right_Shield_label->setText(SH_LABEL);
     ui->Right_Armor_label->setText(AR_LABEL);
     ui->Right_ArmorPirecing_label->setText(AP_LABEL);
+
+
+    // Najpierw zbierz wszystkie unikalne tagi
+    QSet<QString> uniqueTags;
+
+    for(const Unit& unit : Units) {
+        QVector<QString> tags = unit.getTags(); // Zakładając, że getTags() zwraca QVector<QString>
+        for (const QString& tag : tags) {
+            uniqueTags.insert(tag);
+        }
+    }
+
+    for (const QString& tag : uniqueTags) {
+        ui->Left_Tag_comboBox->addItem(tag);
+        ui->Right_Tag_comboBox->addItem(tag);
+    }
+
 
 }
 
@@ -89,7 +146,7 @@ void MainWindow::on_Right_Name_comboBox_currentTextChanged(const QString &arg1)
             ui->Right_Shield_doubleSpinBox->setValue(unit.getShield());
             ui->Right_Armor_doubleSpinBox->setValue(unit.getArmor());
             ui->Right_ArmorPirecing_doubleSpinBox->setValue(unit.getArmorPiercing());
-            ui->Result_label->setText(unit.getKeywords()[0]);
+            ui->Result_label->setText(unit.getTags()[0]);
             break;
         }
     }

@@ -528,6 +528,16 @@
            </item>
           </layout>
          </item>
+         <item>
+          <widget class="QComboBox" name="Left_Tag_comboBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
         </layout>
        </widget>
       </item>
@@ -1117,6 +1127,16 @@
             </widget>
            </item>
           </layout>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Right_Tag_comboBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>

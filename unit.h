@@ -38,7 +38,7 @@ public:
 
     QVector<WargearOption> getWargearOptions() const { return wargearOptions; }
     QVector<QString> getAbilities() const { return abilities; }
-    QVector<QString> getKeywords() const { return keywords; }
+    QVector<QString> getTags() const { return Tags; }
     QString getDescription() const { return description; }
 
 
@@ -59,8 +59,12 @@ public:
     void addWargearOption(const WargearOption &option) { wargearOptions.append(option); } // Dodatkowa metoda do dodawania pojedynczej opcji wyposażenia
     void setAbilities(const QVector<QString> &abilitiesList) { abilities = abilitiesList; }
     void addAbility(const QString &ability) { abilities.append(ability); } // Dodatkowa metoda do dodawania pojedynczej zdolności
-    void setKeywords(const QVector<QString> &keywordsList) { keywords = keywordsList; }
-    void addKeyword(const QString &keyword) { keywords.append(keyword); } // Dodatkowa metoda do dodawania pojedynczego słowa kluczowego
+    void setTags(const QVector<QString> &TagsList) { Tags = TagsList; }
+    void addTag(const QString &Tag) { Tags.append(Tag); } // Dodatkowa metoda do dodawania pojedynczego słowa kluczowego
+
+    void setAntiTags(const QVector<QString> &AntiTagsList) { AntiTags = AntiTagsList; }
+    void addAntiTag(const QString &AntiTag) { AntiTags.append(AntiTag); }
+
     void setDescription(const QString &desc) { description = desc; }
 
 
@@ -79,7 +83,8 @@ private:
     double ArmorPiercing;
     QVector<WargearOption> wargearOptions;
     QVector<QString> abilities;
-    QVector<QString> keywords;
+    QVector<QString> Tags;
+    QVector<QString> AntiTags;
     QString description;
 
 

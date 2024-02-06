@@ -76,9 +76,13 @@ void UnitDataManager::loadUnitsFromJson(const QString& filePath) {
             unit.setCharge(ChargeValue);
             unit.setArmorPiercing(ArmorPiercingValue);
             // Keywords
-            QJsonArray keywordsArray = unitObject["Keywords"].toArray();
-            for (const QJsonValue &keywordValue : keywordsArray) {
-                unit.addKeyword(keywordValue.toString());
+            QJsonArray TagArray = unitObject["Tag"].toArray();
+            for (const QJsonValue &TagValue : TagArray) {
+                unit.addTag(TagValue.toString());
+            }
+            QJsonArray AntiTagArray = unitObject["AntiTag"].toArray();
+            for (const QJsonValue &AntiTagValue : AntiTagArray) {
+                unit.addAntiTag(AntiTagValue.toString());
             }
 
             units.append(unit);
