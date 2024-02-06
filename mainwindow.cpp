@@ -46,16 +46,24 @@
 //     return false;
 // }
 
-bool doesCounter(const Unit& unit, const QString& targetType) {
-    for (const QString& keyword : unit.getTags()) {
-        // Jeśli keyword zawiera typ, który może kontrować (np. "Anti Infantry"),
-        // sprawdź, czy targetType pasuje do tego typu.
-        if (keyword.contains("Anti") && keyword.contains(targetType)) {
-            return true;
+bool doesCounter(const Unit& unit1, const Unit& unit2) {
+    auto unit1AntiTags = unit1.getAntiTags();
+    auto unit2Tags = unit2.getTags();
+
+    // Sprawdzamy, czy jakikolwiek z antytagów unit1 pasuje do tagów unit2
+    for (const AntiTag& antiTag : unit1AntiTags) {
+        // Tutaj nie musimy już usuwać "Anti ", ponieważ zakładamy, że tagi są już odpowiednio nazwane
+        QString counteredTagName = antiTag.name.mid(5); // Usuń "Anti " z początku, jeśli jest potrzebne
+
+        // Zamiast porównywać stringi, musimy teraz sprawdzić, czy nazwa antytagu (bez "Anti ") znajduje się w tagach unit2
+        if (unit2Tags.contains(counteredTagName)) {
+            return true; // Unit1 kontruje unit2, jeśli jeden z jego antytagów pasuje do tagu unit2
         }
     }
-    return false;
+
+    return false; // Nie znaleziono pasujących antytagów, więc unit1 nie kontruje unit2
 }
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)

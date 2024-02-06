@@ -17,6 +17,10 @@ struct WargearOption {
     QVector<Skill> skills;
 };
 
+struct AntiTag {
+    QString name;
+    double value;
+};
 
 class Unit
 {
@@ -39,6 +43,7 @@ public:
     QVector<WargearOption> getWargearOptions() const { return wargearOptions; }
     QVector<QString> getAbilities() const { return abilities; }
     QVector<QString> getTags() const { return Tags; }
+    QVector<AntiTag> getAntiTags() const { return AntiTags; }
     QString getDescription() const { return description; }
 
 
@@ -62,9 +67,8 @@ public:
     void setTags(const QVector<QString> &TagsList) { Tags = TagsList; }
     void addTag(const QString &Tag) { Tags.append(Tag); } // Dodatkowa metoda do dodawania pojedynczego słowa kluczowego
 
-    void setAntiTags(const QVector<QString> &AntiTagsList) { AntiTags = AntiTagsList; }
-    void addAntiTag(const QString &AntiTag) { AntiTags.append(AntiTag); }
-
+    void setAntiTags(const QVector<AntiTag> &antiTagsList) { AntiTags = antiTagsList; }
+    void addAntiTag(const AntiTag &antiTag) { AntiTags.append(antiTag); }
     void setDescription(const QString &desc) { description = desc; }
 
 
@@ -84,7 +88,7 @@ private:
     QVector<WargearOption> wargearOptions;
     QVector<QString> abilities;
     QVector<QString> Tags;
-    QVector<QString> AntiTags;
+    QVector<AntiTag> AntiTags;
     QString description;
 
 

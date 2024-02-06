@@ -7,6 +7,7 @@
 #include "unit.h"
 #include "unitdatamanager.h"
 
+
 UnitDataManager::UnitDataManager() {}
 
 void UnitDataManager::loadUnitsFromJson(const QString& filePath) {
@@ -62,7 +63,7 @@ void UnitDataManager::loadUnitsFromJson(const QString& filePath) {
                         ChargeValue = skill.skillValue;
                     }
                     else if (skill.skillName == "Armor Piercing") {
-                        ChargeValue = skill.skillValue;
+                        ArmorPiercingValue = skill.skillValue;
                     }
 
                 }
@@ -75,14 +76,21 @@ void UnitDataManager::loadUnitsFromJson(const QString& filePath) {
             unit.setRangeDamage(rangeDamageValue);
             unit.setCharge(ChargeValue);
             unit.setArmorPiercing(ArmorPiercingValue);
-            // Keywords
-            QJsonArray TagArray = unitObject["Tag"].toArray();
-            for (const QJsonValue &TagValue : TagArray) {
-                unit.addTag(TagValue.toString());
+
+            // Tagi
+            QJsonArray tagArray = unitObject["Tags"].toArray();
+            for (const QJsonValue &tagValue : tagArray) {
+                unit.addTag(tagValue.toString());
             }
-            QJsonArray AntiTagArray = unitObject["AntiTag"].toArray();
-            for (const QJsonValue &AntiTagValue : AntiTagArray) {
-                unit.addAntiTag(AntiTagValue.toString());
+
+            // AntiTagi
+            QJsonArray antiTagArray = unitObject["AntiTags"].toArray();
+            for (const QJsonValue &antiTagValue : antiTagArray) {
+                QJsonObject antiTagObject = antiTagValue.toObject();
+                AntiTag antiTag;
+                antiTag.name = antiTagObject["Name"].toString();
+                antiTag.value = antiTagObject["Value"].toDouble(); // Zakładamy, że "Value" to int
+                unit.addAntiTag(antiTag);
             }
 
             units.append(unit);
