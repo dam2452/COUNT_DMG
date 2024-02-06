@@ -47,7 +47,8 @@ UnitAttributes getUnitAttributes(const QString& unitName, const QVector<Unit>& u
 
 
 
-bool doesCounter(const Unit& unit1, const Unit& unit2) {
+// Modify the doesCounter function to return the matching AntiTag
+AntiTag doesCounter(const Unit& unit1, const Unit& unit2) {
     auto unit1AntiTags = unit1.getAntiTags();
     auto unit2Tags = unit2.getTags();
 
@@ -58,12 +59,14 @@ bool doesCounter(const Unit& unit1, const Unit& unit2) {
 
         // Zamiast porównywać stringi, musimy teraz sprawdzić, czy nazwa antytagu (bez "Anti ") znajduje się w tagach unit2
         if (unit2Tags.contains(counteredTagName)) {
-            return true; // Unit1 kontruje unit2, jeśli jeden z jego antytagów pasuje do tagu unit2
+            return antiTag; // Return the matching AntiTag when found
         }
     }
 
-    return false; // Nie znaleziono pasujących antytagów, więc unit1 nie kontruje unit2
+    // Return an empty AntiTag if no match is found
+    return AntiTag{"", 0.0};
 }
+
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -146,9 +149,8 @@ void MainWindow::on_Right_Name_comboBox_currentTextChanged(const QString &arg1)
 
 void MainWindow::on_Attack_pushButton_clicked()
 {
-    int counterValue = 0;
     double result = 0.0;
-
+    double counteredValue = 0.0;
     // Pobierz nazwy jednostek z obu comboBoxów
     QString leftUnitName = ui->Left_Name_comboBox->currentText();
     QString rightUnitName = ui->Right_Name_comboBox->currentText();
@@ -176,12 +178,11 @@ void MainWindow::on_Attack_pushButton_clicked()
     }
 
     // Użyj funkcji doesCounter() do sprawdzenia, czy lewa jednostka kontruje prawą
-    if (doesCounter(leftUnit, rightUnit)) {
-        qDebug() << leftUnitName << "kontruje" << rightUnitName;
-        counterValue = 1;
-    } else {
-        qDebug() << leftUnitName << "nie kontruje" << rightUnitName;
-        counterValue = 0;
+    AntiTag counteredAntiTag = doesCounter(leftUnit, rightUnit);
+    if (!counteredAntiTag.name.isEmpty()) {
+        // Access the value of the countered AntiTag
+        counteredValue = counteredAntiTag.value;
+
     }
 
     // Pobierz atrybuty jednostek przy użyciu getUnitAttributes
@@ -189,8 +190,10 @@ void MainWindow::on_Attack_pushButton_clicked()
     UnitAttributes rightAttributes = getUnitAttributes(rightUnitName, Units);
 
 
-    result = leftAttributes.hp - rightAttributes.hp;
+    result = leftAttributes.meleeDamage  +leftAttributes.stamina +  counteredValue + leftAttributes.chargeBonus - rightAttributes.armor - rightAttributes.armorPiercing;
 
+
+    if(result <= 0) result =1;
     ui->Result_label->setNum(result);
 }
 
@@ -198,6 +201,50 @@ void MainWindow::on_Attack_pushButton_clicked()
 
 void MainWindow::on_AttackRange_pushButton_clicked()
 {
-    //ui->Result_label->setText("test1");
+    double result = 0.0;
+    double counteredValue = 0.0;
+    // Pobierz nazwy jednostek z obu comboBoxów
+    QString leftUnitName = ui->Left_Name_comboBox->currentText();
+    QString rightUnitName = ui->Right_Name_comboBox->currentText();
+
+    // Znajdź jednostki na podstawie nazw
+    Unit leftUnit, rightUnit;
+    bool leftFound = false, rightFound = false;
+
+    for (const Unit& unit : Units) {
+        if (unit.getUnitName() == leftUnitName) {
+            leftUnit = unit;
+            leftFound = true;
+        }
+        if (unit.getUnitName() == rightUnitName) {
+            rightUnit = unit;
+            rightFound = true;
+        }
+        if (leftFound && rightFound) break; // Zakończ pętlę, jeśli znaleziono obie jednostki
+    }
+
+    // Sprawdź, czy jednostki zostały znalezione
+    if (!leftFound || !rightFound) {
+        qDebug() << "Nie można znaleźć jednej lub obu jednostek";
+        return;
+    }
+
+    // Użyj funkcji doesCounter() do sprawdzenia, czy lewa jednostka kontruje prawą
+    AntiTag counteredAntiTag = doesCounter(leftUnit, rightUnit);
+    if (!counteredAntiTag.name.isEmpty()) {
+        // Access the value of the countered AntiTag
+        counteredValue = counteredAntiTag.value;
+
+    }
+
+    // Pobierz atrybuty jednostek przy użyciu getUnitAttributes
+    UnitAttributes leftAttributes = getUnitAttributes(leftUnitName, Units);
+    UnitAttributes rightAttributes = getUnitAttributes(rightUnitName, Units);
+
+
+    result = leftAttributes.rangeDamage  +leftAttributes.stamina + leftAttributes.chargeBonus +  counteredValue - rightAttributes.shield -  rightAttributes.armor - rightAttributes.armorPiercing;
+
+    if(result <= 0) result =1;
+    ui->Result_label->setNum(result);
 }
 
