@@ -78,13 +78,13 @@ void UnitDataManager::loadUnitsFromJson(const QString& filePath) {
             unit.setArmorPiercing(ArmorPiercingValue);
 
             // Tagi
-            QJsonArray tagArray = unitObject["Tags"].toArray();
+            QJsonArray tagArray = unitObject["Tag"].toArray();
             for (const QJsonValue &tagValue : tagArray) {
                 unit.addTag(tagValue.toString());
             }
 
             // AntiTagi
-            QJsonArray antiTagArray = unitObject["AntiTags"].toArray();
+            QJsonArray antiTagArray = unitObject["AntiTag"].toArray();
             for (const QJsonValue &antiTagValue : antiTagArray) {
                 QJsonObject antiTagObject = antiTagValue.toObject();
                 AntiTag antiTag;

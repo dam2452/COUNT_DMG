@@ -36,5 +36,7 @@ private:
 private:
     UnitDataManager UnitDataManager;
     QVector<Unit> Units;
+    void updateUnitStatsFromLeftUI(Unit &unit);
+    void updateUnitStatsFromRightUI(Unit &unit);
 };
 #endif // MAINWINDOW_H

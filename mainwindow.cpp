@@ -34,17 +34,34 @@ struct UnitAttributes {
         chargeBonus(chargeBonus), shield(shield), armor(armor), armorPiercing(armorPiercing) {}
 };
 
-UnitAttributes getUnitAttributes(const QString& unitName, const QVector<Unit>& units) {
-    for (const Unit& unitItem : units) {
-        if (unitItem.getUnitName() == unitName) {
-            return UnitAttributes(unitItem.getHp(), unitItem.getMeleeDamage(), unitItem.getRangeDamage(), unitItem.getStamina(),
-                                  unitItem.getCharge(), unitItem.getShield(), unitItem.getArmor(), unitItem.getArmorPiercing());
-        }
-    }
-    return UnitAttributes(0, 0, 0, 0, 0, 0, 0, 0); // Return empty attributes if unit not found
+UnitAttributes getUnitAttributes(const Unit& unit) {
+    return UnitAttributes(unit.getHp(), unit.getMeleeDamage(), unit.getRangeDamage(), unit.getStamina(),
+                          unit.getCharge(), unit.getShield(), unit.getArmor(), unit.getArmorPiercing());
 }
 
 
+void MainWindow::updateUnitStatsFromLeftUI(Unit &unit) {
+    // Pobranie wartości z SpinBoxów i ustawienie statystyk jednostki
+    unit.setHp(ui->Left_HP_doubleSpinBox->value());
+    unit.setArmor(ui->Left_Armor_doubleSpinBox->value());
+    unit.setShield(ui->Left_Shield_doubleSpinBox->value());
+    unit.setStamina(ui->Left_Stamina_doubleSpinBox->value());
+    unit.setMeleeDamage(ui->Left_MeeleDamge_doubleSpinBox->value());
+    unit.setRangeDamage(ui->Left_RangeDamage_doubleSpinBox->value());
+    unit.setCharge(ui->Left_ChargeBonus_doubleSpinBox->value());
+    unit.setArmorPiercing(ui->Left_ArmorPirecing_doubleSpinBox->value());
+}
+void MainWindow::updateUnitStatsFromRightUI(Unit &unit) {
+    // Pobranie wartości z SpinBoxów i ustawienie statystyk jednostki
+    unit.setHp(ui->Right_HP_doubleSpinBox->value());
+    unit.setArmor(ui->Right_Armor_doubleSpinBox->value());
+    unit.setShield(ui->Right_Shield_doubleSpinBox->value());
+    unit.setStamina(ui->Right_Stamina_doubleSpinBox->value());
+    unit.setMeleeDamage(ui->Right_MeeleDamge_doubleSpinBox->value());
+    unit.setRangeDamage(ui->Right_RangeDamage_doubleSpinBox->value());
+    unit.setCharge(ui->Right_ChargeBonus_doubleSpinBox->value());
+    unit.setArmorPiercing(ui->Right_ArmorPirecing_doubleSpinBox->value());
+}
 
 
 // Modify the doesCounter function to return the matching AntiTag
@@ -185,12 +202,20 @@ void MainWindow::on_Attack_pushButton_clicked()
 
     }
 
+
+    updateUnitStatsFromLeftUI(leftUnit);
+    updateUnitStatsFromRightUI(rightUnit);
     // Pobierz atrybuty jednostek przy użyciu getUnitAttributes
-    UnitAttributes leftAttributes = getUnitAttributes(leftUnitName, Units);
-    UnitAttributes rightAttributes = getUnitAttributes(rightUnitName, Units);
+    UnitAttributes leftAttributes = getUnitAttributes(leftUnit);
+    UnitAttributes rightAttributes = getUnitAttributes(rightUnit);
+
+  //leftAttributes.meleeDamage =69;
 
 
-    result = leftAttributes.meleeDamage  +leftAttributes.stamina +  counteredValue + leftAttributes.chargeBonus - rightAttributes.armor - rightAttributes.armorPiercing;
+    double armorResultant =  leftAttributes.armorPiercing-rightAttributes.armor;
+    if(armorResultant > 0) armorResultant = 0.0;
+
+    result = leftAttributes.meleeDamage + leftAttributes.stamina*leftAttributes.chargeBonus +  counteredValue  + armorResultant;
 
 
     if(result <= 0) result =1;
@@ -237,12 +262,23 @@ void MainWindow::on_AttackRange_pushButton_clicked()
 
     }
 
+    updateUnitStatsFromLeftUI(leftUnit);
+    updateUnitStatsFromRightUI(rightUnit);
+
     // Pobierz atrybuty jednostek przy użyciu getUnitAttributes
-    UnitAttributes leftAttributes = getUnitAttributes(leftUnitName, Units);
-    UnitAttributes rightAttributes = getUnitAttributes(rightUnitName, Units);
+    UnitAttributes leftAttributes = getUnitAttributes(leftUnit);
+    UnitAttributes rightAttributes = getUnitAttributes(rightUnit);
 
+    double armorResultant =  leftAttributes.armorPiercing - rightAttributes.shield -  rightAttributes.armor;
+    if(armorResultant > 0) armorResultant = 0.0;
 
-    result = leftAttributes.rangeDamage  +leftAttributes.stamina + leftAttributes.chargeBonus +  counteredValue - rightAttributes.shield -  rightAttributes.armor - rightAttributes.armorPiercing;
+    result = leftAttributes.rangeDamage  +leftAttributes.stamina*leftAttributes.chargeBonus +  counteredValue + armorResultant;
+
+    // double armorResultant =  leftAttributes.armorPiercing-rightAttributes.armor;
+    // if(armorResultant > 0) armorResultant = 0.0;
+
+    // result = leftAttributes.meleeDamage + leftAttributes.stamina*leftAttributes.chargeBonus +  counteredValue  + armorResultant;
+
 
     if(result <= 0) result =1;
     ui->Result_label->setNum(result);
