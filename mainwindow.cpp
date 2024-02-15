@@ -71,18 +71,16 @@ AntiTag doesCounter(const Unit& unit1, const Unit& unit2) {
 
     // Sprawdzamy, czy jakikolwiek z antytagów unit1 pasuje do tagów unit2
     for (const AntiTag& antiTag : unit1AntiTags) {
-        // Tutaj nie musimy już usuwać "Anti ", ponieważ zakładamy, że tagi są już odpowiednio nazwane
-        QString counteredTagName = antiTag.name.mid(5); // Usuń "Anti " z początku, jeśli jest potrzebne
-
-        // Zamiast porównywać stringi, musimy teraz sprawdzić, czy nazwa antytagu (bez "Anti ") znajduje się w tagach unit2
-        if (unit2Tags.contains(counteredTagName)) {
-            return antiTag; // Return the matching AntiTag when found
+        // Teraz porównujemy nazwę antytagu bezpośrednio z tagami unit2
+        if (unit2Tags.contains(antiTag.name)) {
+            return antiTag; // Zwracamy pasujący AntiTag, gdy zostanie znaleziony
         }
     }
 
-    // Return an empty AntiTag if no match is found
+    // Zwracamy pusty AntiTag, jeśli nie znaleziono dopasowania
     return AntiTag{"", 0.0};
 }
+
 
 
 
